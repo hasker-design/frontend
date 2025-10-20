@@ -1,0 +1,1230 @@
+/* Global font ailesi ve box-sizing */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    font-family: 'Outfit', sans-serif;
+    box-sizing: border-box;
+}
+
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+/* Tüm Sayfa için Temel Ayarlar */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(to bottom, #00509E, #0066CC);
+    height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ana Sistem */
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+/* Sol Bölüm - Banner (Tamamen Sabit) */
+.left-section {
+    width: 300px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    z-index: 1;
+    background-color: transparent;
+}
+
+.banner-container {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    transition: transform 0.3s ease;
+}
+
+.promo-image {
+    width: 100%;
+    height: auto;
+}
+
+.more-link {
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Sağ Bölüm - Form (Scrollable) */
+.right-section {
+    flex: 1;
+    margin-left: 300px;
+    padding: 20px 40px;
+    overflow-y: auto;
+    height: 100vh;
+    box-sizing: border-box;
+    background-color: transparent;
+}
+
+/* Logo Stili - Sadece masaüstünde görünecek */
+.logo {
+    margin-bottom: 5px;
+    font-size: 25px;
+    font-weight: normal;
+    color: #3a4863;
+    font-family: 'Helvetica', 'Arial', 'Verdana', sans-serif;
+}
+
+/* Başlık Stili */
+.header {
+    font-size: 25px;
+    color: #3a4863;
+    margin-bottom: 10px;
+    text-align: left;
+    font-weight: normal;
+    padding: 0;
+    font-family: 'Helvetica', 'Arial', 'Verdana', sans-serif;
+}
+
+/* Form İçeriği */
+.form-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 400px;
+    margin-top: 50px;
+    position: relative;
+}
+
+/* Form Elementleri */
+.form-group {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.form-group input {
+    width: 450px;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+    height: 40px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #003087;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Şifremi Unuttum Logosu ve Linki */
+.forgot-password-container {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.forgot-password-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
+
+.forgot-password-link {
+    color: #49A5E0;
+    text-decoration: none;
+    font-size: 14px;
+    font-family: 'Helvetica', 'Arial', 'Verdana', sans-serif;
+    font-weight: 600;
+}
+
+.form-content .submit-button {
+    width: 115px;
+    padding: 6px;
+    background-color: #0d0369;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    height: 46px;
+    transition: background-color 0.3s;
+    position: relative;
+    top: 52px;
+    left: 335px;
+}
+
+.form-content .submit-button:hover {
+    background-color: #002366;
+}
+
+/* Linkler */
+.links-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.link-with-icon {
+    display: flex;
+    align-items: center;
+    color: #49A5E0;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    font-family: 'Helvetica', 'Arial', 'Verdana', sans-serif;
+    font-weight: 600;
+}
+
+.link-with-icon:hover {
+    background-color: #f0f7ff;
+}
+
+.security-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+}
+
+.info-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+}
+
+/* Bilgi Bölümü */
+.info-section {
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    border: none;
+}
+
+.info-section ul {
+    padding-left: 20px;
+    margin: 0;
+}
+
+.info-section li {
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #666;
+    font-family: 'Helvetica', 'Arial', 'Verdana';
+}
+
+.info-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.info-link:hover {
+    text-decoration: underline;
+}
+
+/* Footer - Sadece mobilde görünecek */
+.footer {
+    margin-top: 20px;
+    padding: 10px 0;
+    background-color: #003087;
+    color: white;
+    text-align: center;
+}
+
+.footer-links {
+    margin-bottom: 10px;
+}
+
+.footer-link {
+    color: #49A5E0;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 14px;
+    font-family: 'Helvetica', 'Arial', 'Verdana', sans-serif;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+.copyright {
+    font-size: 12px;
+    margin: 0;
+}
+
+/* İşCep Logosu Stili */
+.iscep-logo {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 100px;
+}
+
+/* Telefon Doğrulama Ekranındaki İşCep Logosu */
+.right-section .iscep-logo.iscep-logo-phone {
+    top: 30px !important;
+}
+
+/* User.png Görseli Stili (Daire Kapsayıcı) */
+.user-icon {
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 80px;
+    background-color: white;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* User.png Görselinin Kendisi */
+.user-icon img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+}
+
+/* Yeni Div Stili */
+.new-container {
+    position: absolute;
+    top: 250px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 350px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19.2px;
+    font-weight: 500;
+    color: #FFFFFF;
+    gap: 8px;
+}
+
+/* Telefon Doğrulama Başlığı Stili */
+.new-container.phone-verification-title {
+    top: 230px;
+    flex-direction: column;
+    height: auto;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+/* Telefon Doğrulama Alt Başlık Stili */
+.phone-verification-subtitle {
+    font-size: 16px;
+    font-weight: 400;
+    color: #E6E6E6;
+    margin-top: 8px;
+}
+
+/* Down Arrow Kapsayıcı Div Stili */
+.down-arrow {
+    width: 24px;
+    height: 24px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    padding: 5px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Down Arrow Görseli Stili */
+.down-arrow-img {
+    width: 24px;
+    height: 24px;
+}
+
+/* Yeni Kullanıcı'nın Altındaki Yeni Div Stili */
+.new-lower-container {
+    position: absolute;
+    top: 276px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 350px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    color: #FFFFFF;
+}
+
+/* Yeni Input Stili */
+.new-input {
+    position: absolute;
+    width: 350px;
+    height: 63px;
+    padding: 1.2rem 1rem;
+    padding-top: 1.4rem;
+    padding-bottom: 0.6rem;
+    color: #4b5366;
+    font-weight: 500;
+    font-size: 18px;
+    border: none;
+    border-radius: 6px;
+    box-sizing: border-box;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+/* TC Inputu için Özel Konum ve Yükseklik */
+.new-input.tc-input {
+    top: 0;
+    left: 0;
+    width: 350px;
+    height: 63px !important;
+    padding-top: 2.4rem;
+    padding-bottom: 0.6rem;
+    font-size: 19px;
+    color: #4b5366;
+}
+
+/* Şifre Inputu için Özel Konum ve Yükseklik */
+.new-input.password-input {
+    top: 0;
+    left: 0;
+    width: 350px;
+    height: 63px !important;
+    padding-top: 1.4rem;
+    padding-bottom: 0.6rem;
+    color: transparent !important;
+    caret-color: transparent;
+    overflow-clip-margin: 0px !important;
+    overflow: clip !important;
+}
+
+/* Telefon Inputu için Özel Konum */
+.new-input.phone-input {
+    top: 0;
+    left: 0;
+    width: 350px;
+    height: 63px !important;
+    padding-left: 54px;
+    padding-top: 1.7rem;
+    padding-bottom: 0.6rem;
+    font-size: 19px;
+    box-sizing: border-box;
+}
+
+/* TC 11 hane olduğunda sağdaki çizgi etkisini tamamen kaldır */
+.new-input.password-input.no-right-line {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), -2px 0 5px rgba(0, 0, 0, 0.1), 0 -2px 5px rgba(0, 0, 0, 0.1);
+    border-right: none !important;
+}
+
+/* Hover ve Focus Stilleri */
+.new-input:hover,
+.new-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 48, 135, 0.3);
+}
+
+/* Input Kapsayıcı Stili */
+.input-wrapper {
+    position: absolute;
+    top: 340px;
+    width: 350px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* TC Inputu Kapsayıcı Stili */
+.tc-input-wrapper {
+    position: relative;
+    width: 100%;
+    height: 63px;
+}
+
+/* Telefon Inputu Kapsayıcı Stili */
+.phone-input-wrapper {
+    position: relative;
+    width: 100%;
+    height: 63px;
+}
+
+/* Şifre Inputu Kapsayıcı Stili */
+.password-input-wrapper {
+    position: absolute;
+    top: 75px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 350px;
+    height: 63px;
+}
+
+/* Telefon numarası için +90 öneki (input'un içinde) */
+.phone-prefix {
+    position: absolute;
+    left: 16px;
+    top: 1.8rem;
+    font-size: 18px;
+    font-weight: 500;
+    color: #4b5366;
+    margin-right: 4px;
+    z-index: 2;
+    display: none;
+}
+
+/* Input focus'tayken +90 öneki görünsün */
+.phone-input-wrapper.prefix-visible .phone-prefix {
+    display: block;
+}
+
+/* Temizle butonu stilleri */
+.clear-tc-button,
+.clear-password-button,
+.clear-phone-button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #FFFFFF;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 3px;
+    z-index: 3;
+}
+
+/* Gri yuvarlak arka plan */
+.clear-tc-button::before,
+.clear-password-button::before,
+.clear-phone-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    background-color: #D3D3D3;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.clear-tc-button:hover,
+.clear-password-button:hover,
+.clear-phone-button:hover {
+    color: #F0F0F0;
+}
+
+/* TC Label Stili */
+.tc-label {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    font-size: 15px;
+    color: #999;
+    font-weight: 500;
+    padding: 2px 0;
+    z-index: 2;
+    opacity: 1;
+    transition: top 0.15s ease-in-out, font-size 0.15s ease-in-out, color 0.15s ease-in-out;
+    display: flex;
+    align-items: center;
+}
+
+/* TC inputuna hover yapıldığında veya yazmaya başlandığında "Müşteri Numarası / TCKN-YKN" yazısını sol üste kaydır */
+.tc-label.hovered {
+    top: 8px;
+    left: 15px;
+    transform: none;
+    font-size: 14px;
+    color: #333;
+    opacity: 1;
+}
+
+/* TC inputuna hover yapıldığında sadece "TCKN-YKN" kısmı daha koyu olacak */
+.tc-input-wrapper:hover .tc-label .tc-label-part {
+    color: #333;
+}
+
+/* "Müşteri Numarası" için stil */
+.tc-label span:first-child {
+    margin-right: 6px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* "TCKN-YKN" kısmı için stil */
+.tc-label-part {
+    color: #999;
+    font-weight: 500;
+    transition: color 0.15s ease-in-out, font-weight 0.15s ease-in-out;
+}
+
+/* TCKN-YKN için kalın font stili */
+.tc-label-part.bold {
+    font-weight: 700 !important;
+    color: #333 !important;
+}
+
+/* Input boşken veya label ortadayken TCKN-YKN kalın olmasın */
+.tc-label:not(.hovered) .tc-label-part {
+    color: #999 !important;
+    font-weight: 500 !important;
+}
+
+/* Şifre Label Stili */
+.password-label {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #999;
+    font-weight: 500;
+    padding: 0 2px;
+    z-index: 2;
+    opacity: 1;
+    transition: top 0.15s ease-in-out, font-size 0.15s ease-in-out, color 0.15s ease-in-out;
+}
+
+/* Şifre alanı aktif veya doluysa "Şifre" yazısını sol üste kaydır */
+.password-label.hovered {
+    top: 9px;
+    left: 12px;
+    transform: none;
+    font-size: 14px;
+    color: #555;
+    opacity: 1;
+}
+
+/* Telefon Label Stili */
+.phone-label {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    font-size: 15px;
+    color: #999;
+    font-weight: 500;
+    padding: 0 2px;
+    z-index: 2;
+    opacity: 1;
+    transition: top 0.15s ease-in-out, font-size 0.15s ease-in-out, color 0.15s ease-in-out;
+}
+
+/* Telefon alanı aktif veya focus'tayken label üstte kalsın */
+.phone-label.phone-hovered {
+    top: 8px;
+    left: 15px;
+    transform: none;
+    font-size: 14px;
+    color: #333;
+    opacity: 1;
+}
+
+/* Input boşken ve focus dışındayken label ortaya dönsün */
+.new-input.phone-input:not(:focus):not([value]) + .phone-label {
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    font-size: 15px;
+    color: #999;
+}
+
+/* Şifre Overlay Stili */
+.password-overlay {
+    position: absolute;
+    top: 31px;
+    left: 16px;
+    width: calc(100% - 32px);
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Dairelerin Stili */
+.dots {
+    display: flex;
+    gap: 18px;
+}
+
+.dot {
+    font-size: 25px;
+}
+
+/* Action Links (Müşteri Olmak İstiyorum ve Şifre Oluştur) */
+.action-links {
+    position: absolute;
+    top: 85px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 350px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 3;
+}
+
+.action-links.shifted {
+    top: 161px !important;
+}
+
+.action-links.error-shifted {
+    top: 146px !important;
+}
+
+.action-links.error-shifted.shifted {
+    top: 221px !important;
+}
+
+.action-link {
+    background: none;
+    border: none;
+    color: #E6E6E6;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0.4rem 0.6rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+}
+
+.action-link:hover {
+    color: #D1D1D1;
+}
+
+/* Devam Butonu Stili */
+.continue-button {
+    position: absolute;
+    top: 145px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: inherit;
+    width: 95%;
+    max-width: 350px;
+    padding: 1.1rem;
+    color: #FFF;
+    background-color: #4d89bb; /* Başlangıç rengi */
+    opacity: 0.6; /* Soluk görünüm */
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: background-color 0.2s, opacity 0.2s;
+    z-index: 3;
+}
+
+.continue-button:disabled {
+    background-color: #4d89bb; /* Devre dışı renk */
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* TC 11 hane olduğunda pozisyon kaydırma */
+.continue-button.shifted {
+    top: 221px !important;
+}
+
+/* TC hata mesajı göründüğünde pozisyon kaydırma */
+.continue-button.error-shifted {
+    top: 221px !important;
+}
+
+/* TC hata mesajı + şifre alanı göründüğünde pozisyon kaydırma */
+.continue-button.error-shifted.shifted {
+    top: 296px !important;
+}
+
+/* Aktif buton (TCKN girişi başladığında veya şifre tamamlandığında) */
+.continue-button.active-continue-button {
+    background-color: #3A8CCF; /* Açık mavi renk */
+    opacity: 1; /* Tam opak */
+}
+
+/* Hover durumu */
+.continue-button:hover {
+    background-color: #427ba8; /* Hover rengi */
+    opacity: 0.8; /* Hafif soluk */
+}
+
+/* Aktif butonun hover durumu */
+.continue-button.active-continue-button:hover {
+    background-color: #2C6FAE; /* Mevcut hover rengi */
+    opacity: 1;
+}
+
+/* Tıklama (active) durumu */
+.continue-button.active-continue-button:active {
+    background-color: #3A8CCF;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Devre dışı durumu */
+.continue-button:disabled:hover {
+    background-color: #4d89bb !important;
+    opacity: 0.6;
+}
+
+/* Telefon Doğrulama Butonu */
+.button-phone {
+    position: absolute;
+    top: 75px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: inherit;
+    width: 95%;
+    max-width: 350px;
+    padding: 1.1rem;
+    color: #FFF;
+    background-color: #4d89bb; /* Başlangıç rengi */
+    opacity: 0.6; /* Soluk görünüm */
+    border: none;
+    border-radius: 12px; /* Devam butonuyla aynı */
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 0;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: background-color 0.2s, opacity 0.2s, box-shadow 0.1s;
+    z-index: 3;
+}
+
+/* Telefon Doğrulama Butonu Hover Durumu */
+.button-phone:hover {
+    background-color: #427ba8;
+    opacity: 0.8;
+}
+
+/* Telefon numarası girişi başladığında renk değişimi */
+.button-phone.active-continue-button {
+    background-color: #3A8CCF; /* Açık mavi, Devam butonuyla aynı */
+    opacity: 1;
+}
+
+/* Aktif butonun hover durumu */
+.button-phone.active-continue-button:hover {
+    background-color: #2C6FAE; /* Devam butonuyla aynı */
+    opacity: 1;
+}
+
+/* Tıklama (active) durumu */
+.button-phone.active-continue-button:active {
+    background-color: #3A8CCF;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Devam butonuyla aynı */
+}
+
+/* Devre dışı durumu */
+.button-phone:disabled {
+    background-color: #4d89bb;
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.button-phone:disabled:hover {
+    background-color: #4d89bb !important;
+    opacity: 0.6;
+}
+
+/* Doğrula Butonu Kapsayıcı Stili */
+.verify-button-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Input Placeholder Stili */
+.new-input::placeholder {
+    color: #A9A9A9;
+    font-size: 16px;
+    line-height: 1;
+}
+
+/* Telefon Hata Mesajı Stili */
+.phone-error {
+    position: absolute;
+    top: 63px;
+    left: 0;
+    width: 100%;
+    max-width: 350px;
+    padding: 8px 12px;
+    background-color: white;
+    border: none;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    color: #ff585f;
+    font-size: 16px;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    box-sizing: border-box;
+}
+
+.phone-error .error-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+}
+
+/* Telefon Inputu Hata Durumunda Kenarlık Kaldırma */
+.phone-input-wrapper.error .new-input.phone-input {
+    border: none !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: 68px !important;
+    transition: height 0.3s ease;
+}
+
+/* TC Hata Mesajı Stili */
+.tc-error {
+    position: absolute;
+    top: 63px;
+    left: 0;
+    width: 100%;
+    max-width: 350px;
+    padding: 8px 12px;
+    background-color: white;
+    border: none;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    color: #ff585f;
+    font-size: 16px;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    box-sizing: border-box;
+}
+
+.tc-error .error-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+}
+
+/* TC Inputu Hata Durumunda Input Yüksekliği */
+.tc-input-wrapper.error .new-input.tc-input {
+    height: 68px !important;
+    transition: height 0.3s ease;
+    box-sizing: border-box;
+    border: none;
+    width: 100% !important;
+    max-width: 350px;
+}
+
+/* 11 hane girildiğinde input eski boyutuna dönsün */
+.tc-input-wrapper:not(.error) .new-input.tc-input {
+    height: 63px !important;
+    transition: height 0.3s ease;
+    border: none;
+    width: 100% !important;
+    max-width: 350px;
+}
+
+.tc-input-wrapper.error {
+    border: none;
+}
+
+/* TC input wrapper için sınırlandırma */
+.tc-input-wrapper {
+    width: 100%;
+    max-width: 350px;
+}
+
+/* Bekleme Sayfası Stilleri */
+.bekleme-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.bekleme-iscep-logo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px; /* İş Bankası logosu ile arasına mesafe */
+    margin-top: -50px; /* Yukarı kaydırma */
+}
+
+.bekleme-isbank-logo {
+    width: 120px;
+    height: auto;
+    margin-bottom: 40px; /* Yeni metin ile arasına mesafe */
+    margin-top: -20px; /* Yukarı kaydırma, iscep-logo ile mesafe korunacak */
+}
+
+.waiting-message {
+    color: #FFFFFF; /* .new-container ile uyumlu beyaz metin */
+    font-size: 19.2px; /* .new-container ile aynı font boyutu */
+    font-weight: 500; /* .new-container ile aynı kalınlık */
+    text-align: center;
+    margin-top: 20px; /* Logo ile mesafe artırıldı */
+    max-width: 300px; /* Metnin çok geniş olmaması için */
+    margin-top: -30px; /* Yukarı kaydırma */
+}
+
+/* Mobil Görünüm */
+@media (max-width: 768px) {
+    .left-section {
+        display: none;
+    }
+
+    .right-section {
+        margin-left: 0;
+        padding: 0;
+        height: 100vh;
+        margin: 0;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        position: relative;
+    }
+
+    .header {
+        display: none;
+    }
+
+    .form-content,
+    .form-group,
+    .submit-button,
+    .links-container,
+    .info-section {
+        display: none;
+    }
+
+    .forgot-password-container {
+        display: none;
+    }
+
+    .footer {
+        display: none;
+    }
+
+    /* TC Label Mobil Görünüm */
+    .tc-label {
+        position: absolute;
+        top: 50%;
+        left: 12px;
+        transform: translateY(-50%);
+        font-size: 15px;
+        color: #999;
+        font-weight: 500;
+        padding: 2px 0;
+        z-index: 2;
+        opacity: 1;
+        transition: top 0.1s ease-in-out, font-size 0.1s ease-in-out, color 0.1s ease-in-out;
+        display: flex;
+        align-items: center;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .tc-label.hovered {
+        top: 8px;
+        left: 15px;
+        transform: none;
+        font-size: 14px;
+        color: #333;
+        opacity: 1;
+    }
+
+    .tc-label span:first-child {
+        margin-right: 6px;
+        font-weight: 500;
+        color: #333;
+    }
+
+    .tc-label-part {
+        color: #999;
+        font-weight: 500;
+        transition: color 0.15s ease-in-out, font-weight 0.15s ease-in-out;
+    }
+
+    .tc-label:not(.hovered) .tc-label-part {
+        color: #999 !important;
+        font-weight: 500 !important;
+    }
+
+    .tc-label.hovered .tc-label-part {
+        font-weight: 500;
+        color: #333;
+    }
+
+    /* Doğrula Butonu Kapsayıcı Mobil Stili */
+    .verify-button-container {
+        position: relative;
+        margin-top: 10px; /* Mobilde butonu yukarı taşımak için */
+    }
+
+    .bekleme-iscep-logo {
+        width: 120px;
+        height: 120px;
+        position: absolute;
+        top: 15vh; /* Yukarı kaydırma */
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .bekleme-isbank-logo {
+        width: 50px;
+        height: auto;
+        position: absolute;
+        top: calc(25vh + 70px); /* Yukarı kaydırma */
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .waiting-message {
+        position: absolute;
+        top: calc(25vh + 180px); /* isbank-logo'nun altına mesafe */
+        left: 50%;
+        transform: translateX(-50%);
+        color: #FFFFFF;
+        font-size: 19.2px;
+        font-weight: 500;
+        text-align: center;
+        max-width: 250px;
+    }
+
+    /* Yükleme Ekranı Overlay */
+    .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: linear-gradient(135deg, #00509E, #0066CC);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+    }
+
+    /* Yükleme Kapsayıcısı */
+    .loading-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Yükleme Logosu */
+    .loading-logo {
+        width: 100px;
+        height: 100px;
+        position: relative;
+        background-color: #007BFF;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .loading-logo img {
+        width: 60%;
+        height: auto;
+    }
+
+    /* Logo için Pulse Efekti */
+    .loading-logo::before {
+        content: '';
+        width: 110%;
+        height: 110%;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.3);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: pulse 1.5s infinite ease-out;
+        z-index: -1;
+    }
+
+    /* Yükleme Metni */
+    .loading-text {
+        margin-top: 20px;
+        font-size: 24px;
+        color: #FFFFFF;
+        font-weight: 500;
+        text-align: center;
+    }
+
+    /* Scrollbar Stili */
+    .right-section::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .right-section::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    .right-section::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 4px;
+    }
+
+    .right-section::-webkit-scrollbar-thumb:hover {
+        background: #a8a8a8;
+    }
+
+    /* Mobil için Devam Butonu Ayarları */
+    .continue-button {
+        width: 90%;
+        max-width: 320px;
+        font-size: 0.95rem;
+        padding: 1rem;
+    }
+
+    .continue-button.shifted {
+        top: 200px !important;
+    }
+
+    .continue-button.error-shifted {
+        top: 200px !important;
+    }
+
+    .continue-button.error-shifted.shifted {
+        top: 270px !important;
+    }
+
+    /* Mobil için Doğrula Butonu Ayarları */
+    .button-phone {
+        width: 90%;
+        max-width: 320px;
+        font-size: 0.95rem;
+        padding: 1rem;
+    }
+}
